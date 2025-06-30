@@ -26,4 +26,4 @@ This is a GPT-4 powered interview simulator that generates behavioral and techni
 | Wed | Add FAISS context |
 | Thu | Add evaluation logic |
 | Fri | Deploy + polish |
-
+## 🤝 Collaborator: [Shubham Salunke]
