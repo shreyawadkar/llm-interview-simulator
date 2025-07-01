@@ -6,6 +6,10 @@ from dotenv import load_dotenv
 # Load .env file
 load_dotenv()
 api_key = os.getenv("OPENAI_API_KEY")
+openai.api_key = api_ke
+if not api_key:
+    st.error("API key not loaded. Check your .env file!")
+
 
 # Streamlit App UI
 st.set_page_config(page_title="LLM Interview Simulator", layout="centered")
