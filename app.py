@@ -1,40 +1,50 @@
 import streamlit as st
+import openai  # or use any wrapper like langchain if you prefer
+import os
 
-# --- App title and description ---
+# Set up OpenAI key (make sure to set your key in environment or replace below)
+openai.api_key = os.getenv("OPENAI_API_KEY")
+
 st.set_page_config(page_title="LLM Interview Simulator", layout="centered")
 st.title("🤖 LLM Interview Simulator")
 st.markdown("Simulate behavioral and technical interviews using GPT-4.")
 
-# --- Role selection ---
 roles = ["Software Engineer", "Data Scientist", "Product Manager", "AI Researcher"]
 selected_role = st.selectbox("Choose a role:", roles)
 
-# --- Question display (dummy for now) ---
+if "question" not in st.session_state:
+    st.session_state.question = ""
+
 if st.button("Generate Interview Question"):
-    st.success(f"**[{selected_role}]** Tell me about a time you faced a technical challenge and how you resolved it.")
-    answer = st.text_area("Your Answer:")
-    if st.button("Submit Answer"):
-        st.info("✅ GPT evaluation coming soon...")
-        if submit and user_answer:
-    with st.spinner("Evaluating your response..."):
-        evaluation_prompt = f"""
+    st.session_state.question = f"[{selected_role}] Tell me about a time you faced a technical challenge and how you resolved it."
+    st.session_state.feedback = ""  # Reset feedback
+
+if st.session_state.question:
+    st.success(st.session_state.question)
+    user_answer = st.text_area("Your Answer:")
+
+    if st.button("Submit Answer") and user_answer.strip() != "":
+        with st.spinner("Evaluating your response..."):
+            prompt = f"""
 You are a technical recruiter. Evaluate the following interview response.
 
-Question: {question}
-Candidate's Answer: {user_answer}
+**Question:** {st.session_state.question}  
+**Candidate's Answer:** {user_answer}
 
-Give:
+Provide the following:
 1. A score out of 10
 2. What was good about the answer
-3. What can be improved
+3. What could be improved
 4. Suggest a better response if necessary
 
-Format your reply in Markdown with bullet points.
+Respond in markdown format with bullet points.
 """
+            response = openai.ChatCompletion.create(
+                model="gpt-4",
+                messages=[{"role": "user", "content": prompt}]
+            )
+            st.session_state.feedback = response.choices[0].message.content
 
-        feedback = get_completion(evaluation_prompt)
-
-    st.markdown("### 📝 Interview Feedback")
-    st.markdown(feedback)
-
-
+    if st.session_state.get("feedback"):
+        st.markdown("### 📝 Interview Feedback")
+        st.markdown(st.session_state.feedback)
