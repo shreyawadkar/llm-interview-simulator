@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 
 # Load .env file
 load_dotenv()
-openai.api_key = os.getenv("OPENAI_API_KEY")
+api_key = os.getenv("OPENAI_API_KEY")
 
 # Streamlit App UI
 st.set_page_config(page_title="LLM Interview Simulator", layout="centered")
