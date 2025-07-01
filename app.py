@@ -5,6 +5,8 @@ from dotenv import load_dotenv
 
 # Load environment variables
 load_dotenv()
+print("🔑 DEBUG - Loaded API Key:", os.getenv("OPENAI_API_KEY"))
+
 api_key = os.getenv("OPENAI_API_KEY")
 print("Loaded Key:", api_key)  # ✅ Now api_key is defined before this line
 openai.api_key = api_key
