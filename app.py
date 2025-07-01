@@ -1,11 +1,9 @@
 import streamlit as st
-from dotenv import load_dotenv
-load_dotenv()
-
-import openai  # or use any wrapper like langchain if you prefer
+import openai
 import os
+from dotenv import load_dotenv
 
-# Set up OpenAI key (make sure to set your key in environment or replace below)
+load_dotenv()  # Load .env file
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 st.set_page_config(page_title="LLM Interview Simulator", layout="centered")
@@ -18,9 +16,12 @@ selected_role = st.selectbox("Choose a role:", roles)
 if "question" not in st.session_state:
     st.session_state.question = ""
 
+if "feedback" not in st.session_state:
+    st.session_state.feedback = ""
+
 if st.button("Generate Interview Question"):
     st.session_state.question = f"[{selected_role}] Tell me about a time you faced a technical challenge and how you resolved it."
-    st.session_state.feedback = ""  # Reset feedback
+    st.session_state.feedback = ""
 
 if st.session_state.question:
     st.success(st.session_state.question)
@@ -42,12 +43,15 @@ Provide the following:
 
 Respond in markdown format with bullet points.
 """
-            response = openai.ChatCompletion.create(
-                model="gpt-4",
-                messages=[{"role": "user", "content": prompt}]
-            )
-            st.session_state.feedback = response.choices[0].message.content
+            try:
+                response = openai.ChatCompletion.create(
+                    model="gpt-4",
+                    messages=[{"role": "user", "content": prompt}]
+                )
+                st.session_state.feedback = response.choices[0].message.content
+            except Exception as e:
+                st.error(f"❌ Error: {e}")
 
-    if st.session_state.get("feedback"):
-        st.markdown("### 📝 Interview Feedback")
-        st.markdown(st.session_state.feedback)
+if st.session_state.feedback:
+    st.markdown("### 📝 Interview Feedback")
+    st.markdown(st.session_state.feedback)
