@@ -5,6 +5,8 @@ from dotenv import load_dotenv
 
 # Load environment variables
 load_dotenv()
+print("Loaded Key:", api_key)
+
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 # Streamlit UI setup
