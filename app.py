@@ -27,10 +27,13 @@ if st.button("Generate Interview Question"):
 # Show question and answer box
 if "question" in st.session_state:
     st.success(st.session_state.question)
-    user_answer = st.text_area("Your Answer")
+    if "user_answer" not in st.session_state:
+        st.session_state.user_answer = ""
+
+    st.session_state.user_answer = st.text_area("Your Answer", value=st.session_state.user_answer)
 
     if st.button("Submit Answer"):
-        if not user_answer.strip():
+        if not st.session_state.user_answer.strip():
             st.warning("Please enter your answer before submitting.")
         else:
             with st.spinner("Evaluating your response..."):
@@ -38,7 +41,7 @@ if "question" in st.session_state:
 You are a technical recruiter. Evaluate the following interview response.
 
 Question: {st.session_state.question}
-Candidate's Answer: {user_answer}
+Candidate's Answer: {st.session_state.user_answer}
 
 Give:
 1. A score out of 10
@@ -59,3 +62,6 @@ Format the reply in Markdown with bullet points.
 
 # Show feedback
 if "feedback" in st.session_state and st.session_state.feedback:
+    st.markdown("### 📝 Interview Feedback")
+    st.markdown(st.session_state.feedback)
+
