@@ -1,4 +1,7 @@
 import streamlit as st
+from dotenv import load_dotenv
+load_dotenv()
+
 import openai  # or use any wrapper like langchain if you prefer
 import os
 
