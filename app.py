@@ -3,45 +3,45 @@ import openai
 import os
 from dotenv import load_dotenv
 
-# Load .env file
+# Load environment variables
 load_dotenv()
-api_key = os.getenv("OPENAI_API_KEY")
-openai.api_key = api_ke
-if not api_key:
-    st.error("API key not loaded. Check your .env file!")
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
-
-# Streamlit App UI
+# Streamlit UI setup
 st.set_page_config(page_title="LLM Interview Simulator", layout="centered")
 st.title("🤖 LLM Interview Simulator")
 st.markdown("Simulate behavioral and technical interviews using GPT-4.")
 
+# Role selector
 roles = ["Software Engineer", "Data Scientist", "Product Manager", "AI Researcher"]
 selected_role = st.selectbox("Choose a role:", roles)
 
-# Generate question
+# Generate Question Button
 if st.button("Generate Interview Question"):
     st.session_state.question = f"[{selected_role}] Tell me about a time you faced a technical challenge and how you resolved it."
     st.session_state.feedback = ""
+    st.session_state.user_answer = ""
 
-# Show question and answer box
+# If question was generated
 if "question" in st.session_state:
     st.success(st.session_state.question)
-    if "user_answer" not in st.session_state:
-        st.session_state.user_answer = ""
 
-    st.session_state.user_answer = st.text_area("Your Answer", value=st.session_state.user_answer)
+    # Input answer
+    user_answer = st.text_area("Your Answer:", value=st.session_state.get("user_answer", ""))
+    st.session_state.user_answer = user_answer
 
+    # Submit button
     if st.button("Submit Answer"):
-        if not st.session_state.user_answer.strip():
+        if not user_answer.strip():
             st.warning("Please enter your answer before submitting.")
         else:
             with st.spinner("Evaluating your response..."):
-                prompt = f"""
+                try:
+                    prompt = f"""
 You are a technical recruiter. Evaluate the following interview response.
 
 Question: {st.session_state.question}
-Candidate's Answer: {st.session_state.user_answer}
+Candidate's Answer: {user_answer}
 
 Give:
 1. A score out of 10
@@ -51,7 +51,6 @@ Give:
 
 Format the reply in Markdown with bullet points.
 """
-                try:
                     response = openai.ChatCompletion.create(
                         model="gpt-4",
                         messages=[{"role": "user", "content": prompt}]
@@ -60,8 +59,7 @@ Format the reply in Markdown with bullet points.
                 except Exception as e:
                     st.error(f"OpenAI API Error: {e}")
 
-# Show feedback
-if "feedback" in st.session_state and st.session_state.feedback:
+# Display Feedback
+if st.session_state.get("feedback"):
     st.markdown("### 📝 Interview Feedback")
     st.markdown(st.session_state.feedback)
-
