@@ -109,5 +109,31 @@ Format the reply in Markdown with bullet points.
 
 # Display Feedback
 if st.session_state.get("feedback"):
-    st.markdown("### 📝 Interview Feedback")
-    st.markdown(st.session_state.feedback)
+    with st.expander("📝 Interview Feedback (click to expand)"):
+        st.markdown(st.session_state.feedback)
+
+    # Create transcript content
+    transcript_content = f"""
+Interview Question:
+{st.session_state.get('question', '')}
+
+Your Answer:
+{st.session_state.get('user_answer', '')}
+
+Interview Feedback:
+{st.session_state.get('feedback', '')}
+"""
+
+    # Show download button only after feedback is present
+    st.download_button(
+        label="📥 Download Full Transcript",
+        data=transcript_content,
+        file_name="interview_full_transcript.txt",
+        mime="text/plain"
+    )
+
+# Display Generated Questions History
+if st.session_state.prompt_history:
+    st.markdown("📜 **Generated Questions History**")
+    for idx, q in enumerate(st.session_state.prompt_history, 1):
+        st.write(f"{idx}. {q}")
