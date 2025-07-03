@@ -57,6 +57,39 @@ Try the live app here:
    streamlit run app.py
    Then open http://localhost:8501 in your browser.
 
+## How It Works
+
+- Select an interview role from the sidebar (Software Engineer, Data Scientist, Product Manager, or AI Researcher).  
+- Click **Generate Interview Question** to get a role-specific behavioral or technical question.  
+- Type your answer in the **Your Answer** box.  
+- Click **Submit Answer** to receive AI-powered detailed feedback including a score, strengths, and areas to improve.  
+- Download the full transcript of the interview session including all questions, your answers, and feedback for offline review.  
+- Your generated questions history is shown at the bottom to revisit earlier questions in the current session.
+
+---
+
+## Deployment
+
+This app is deployed and hosted on Streamlit Cloud and can also be deployed to Microsoft Azure with proper setup.
+
+### Streamlit Cloud Deployment
+
+- Connect your GitHub repository to Streamlit Cloud.  
+- Add your OpenAI API key securely in Streamlit Secrets.  
+- Deploy with one click and share your app URL.
+
+### Azure Deployment (Optional)
+
+- Use Azure App Services to host the app for scalability.  
+- Configure environment variables for your API keys.  
+- Automate deployment with CI/CD pipelines via GitHub Actions.
+
+---
+
+## Folder Structure
+
+
+
 
 
 
