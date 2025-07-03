@@ -55,7 +55,7 @@ Try the live app here:
    Start the Streamlit app with:
    ```bash
    streamlit run app.py
-   Then open http://localhost:8501 in your browser.
+   Then open http://localhost:8501 in your browser.```
 
 ## How It Works
 
@@ -86,7 +86,7 @@ This app is deployed and hosted on Streamlit Cloud and can also be deployed to M
 
 ---
 
-## Folder Structure
+
 
 
 
