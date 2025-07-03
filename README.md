@@ -27,3 +27,98 @@ This is a GPT-4 powered interview simulator that generates behavioral and techni
 | Thu | Add evaluation logic |
 | Fri | Deploy + polish |
 ## 🤝 Collaborated by Shubham Salunke
+# 🤖 LLM Interview Simulator
+
+A web app to simulate behavioral and technical interviews using GPT-4.  
+Users can select interview roles, generate role-specific questions, submit answers, and receive AI-powered detailed feedback.
+
+---
+
+## Features
+
+- Choose from Software Engineer, Data Scientist, Product Manager, AI Researcher  
+- Get randomized interview questions based on selected role  
+- Submit your answer and get a scored evaluation with suggestions  
+- Download the full transcript (question, answer, feedback)  
+- View your history of generated questions during the session  
+- Clean, professional UI built with Streamlit
+
+---
+
+## Demo
+
+Try the live app here:  
+[https://llm-interview-simulator-mdsd7zxhay3sxkog4k5aei.streamlit.app/](https://llm-interview-simulator-mdsd7zxhay3sxkog4k5aei.streamlit.app/)
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+- Python 3.8 or higher  
+- OpenAI API key from [https://platform.openai.com](https://platform.openai.com)  
+- (Optional) Git for cloning the repo
+
+### Installation & Setup
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/shreyawadkar/llm-interview-simulator.git
+   cd llm-interview-simulator
+(Recommended) Create and activate a Python virtual environment:
+
+bash
+Copy code
+python -m venv venv
+source venv/bin/activate  # macOS/Linux
+venv\Scripts\activate     # Windows
+Install required packages:
+
+bash
+Copy code
+pip install -r requirements.txt
+Set up your OpenAI API key securely:
+Create a .streamlit/secrets.toml file (do not commit this file) with the following content:
+
+ini
+Copy code
+OPENAI_API_KEY = "your_openai_api_key_here"
+Running Locally
+Start the Streamlit app with:
+
+bash
+Copy code
+streamlit run app.py
+Then open http://localhost:8501 in your browser.
+
+Deployment on Streamlit Cloud
+Push your code to GitHub without the secrets file.
+
+Connect your GitHub repo in Streamlit Cloud dashboard.
+
+Add your OpenAI API key in the Streamlit Cloud Secrets.
+
+Deploy and share your app URL!
+
+Project Files
+app.py — main app script
+
+requirements.txt — dependencies
+
+.streamlit/secrets.toml — for API key locally (excluded from GitHub)
+
+Future Improvements
+User login and saved interview sessions
+
+More customizable roles and questions
+
+Voice input and output support
+
+Deployment on Azure or other cloud platforms
+
+License
+MIT License © 2025 Shreyawadkar
+
+Contact
+For feedback or questions, email: your-email@example.com
