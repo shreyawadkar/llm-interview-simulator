@@ -1,5 +1,4 @@
 
-## 🤝 Collaborated by Shubham Salunke
 # 🤖 LLM Interview Simulator
 
 A web app to simulate behavioral and technical interviews using GPT-4.  
@@ -50,14 +49,15 @@ Try the live app here:
 4. Set up your OpenAI API key securely:
    Create a .streamlit/secrets.toml file (do not commit this file) with the following:
    OPENAI_API_KEY = "your_openai_api_key_here"
-   \```
+   
    
 ### Running Locally
    Start the Streamlit app with:
    ```bash
    streamlit run app.py
    Then open http://localhost:8501 in your browser.
-\```
+   ```
+
 
 ## How It Works
 
@@ -68,25 +68,38 @@ Try the live app here:
 - Download the full transcript of the interview session including all questions, your answers, and feedback for offline review.  
 - Your generated questions history is shown at the bottom to revisit earlier questions in the current session.
 
----
+
 
 ## Deployment
 
 This app is deployed and hosted on Streamlit Cloud and can also be deployed to Microsoft Azure with proper setup.
 
-### Streamlit Cloud Deployment
+## Streamlit Cloud Deployment
 
 - Connect your GitHub repository to Streamlit Cloud.  
 - Add your OpenAI API key securely in Streamlit Secrets.  
 - Deploy with one click and share your app URL.
 
-### Azure Deployment (Optional)
+## Azure Deployment (Optional)
 
 - Use Azure App Services to host the app for scalability.  
 - Configure environment variables for your API keys.  
 - Automate deployment with CI/CD pipelines via GitHub Actions.
 
----
+## Folder Structure
+app.py — Main Streamlit app source code
+
+.streamlit/secrets.toml — Secrets file with API keys (not committed)
+
+requirements.txt — Python dependencies
+
+README.md — Project documentation
+
+Other config and helper files as needed
+
+## License
+MIT License © 2025 Shreya Wadkar
+## 🤝 Collaborated by Shubham Salunke
 
 
 
