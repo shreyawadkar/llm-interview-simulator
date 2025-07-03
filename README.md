@@ -36,26 +36,28 @@ Try the live app here:
 ### Installation & Setup
 
 1. Clone the repository:
-   ```bash
+   \```bash
    git clone https://github.com/shreyawadkar/llm-interview-simulator.git
    cd llm-interview-simulator
 2. (Recommended) Create and activate a Python virtual environment:
-   ```bash
+   \```bash
    python -m venv venv
    source venv/bin/activate  # macOS/Linux
    venv\Scripts\activate     # Windows
 3. Install required packages:
-   ```bash
+   \```bash
    pip install -r requirements.txt
 4. Set up your OpenAI API key securely:
    Create a .streamlit/secrets.toml file (do not commit this file) with the following:
    OPENAI_API_KEY = "your_openai_api_key_here"
+   \```
    
 ### Running Locally
    Start the Streamlit app with:
    ```bash
    streamlit run app.py
-   Then open http://localhost:8501 in your browser.```
+   Then open http://localhost:8501 in your browser.
+\```
 
 ## How It Works
 
