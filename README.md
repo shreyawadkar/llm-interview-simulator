@@ -66,54 +66,26 @@ Try the live app here:
    ```bash
    git clone https://github.com/shreyawadkar/llm-interview-simulator.git
    cd llm-interview-simulator
-(Recommended) Create and activate a Python virtual environment:
+2. (Recommended) Create and activate a Python virtual environment:
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # macOS/Linux
+   venv\Scripts\activate     # Windows
+3. Install required packages:
+   ```bash
+   pip install -r requirements.txt
+4. Set up your OpenAI API key securely:
+   Create a .streamlit/secrets.toml file (do not commit this file) with the following:
+   OPENAI_API_KEY = "your_openai_api_key_here"
+   
+### Running Locally
+   Start the Streamlit app with:
+   ```bash
+   streamlit run app.py
+   Then open http://localhost:8501 in your browser.
 
-bash
-Copy code
-python -m venv venv
-source venv/bin/activate  # macOS/Linux
-venv\Scripts\activate     # Windows
-Install required packages:
 
-bash
-Copy code
-pip install -r requirements.txt
-Set up your OpenAI API key securely:
-Create a .streamlit/secrets.toml file (do not commit this file) with the following content:
 
-ini
-Copy code
-OPENAI_API_KEY = "your_openai_api_key_here"
-Running Locally
-Start the Streamlit app with:
-
-bash
-Copy code
-streamlit run app.py
-Then open http://localhost:8501 in your browser.
-
-Deployment on Streamlit Cloud
-Push your code to GitHub without the secrets file.
-
-Connect your GitHub repo in Streamlit Cloud dashboard.
-
-Add your OpenAI API key in the Streamlit Cloud Secrets.
-
-Deploy and share your app URL!
-
-Project Files
-app.py — main app script
-
-requirements.txt — dependencies
-
-.streamlit/secrets.toml — for API key locally (excluded from GitHub)
-
-Future Improvements
-User login and saved interview sessions
-
-More customizable roles and questions
-
-Voice input and output support
 
 Deployment on Azure or other cloud platforms
 
